@@ -1,0 +1,111 @@
+{% include 'partial/navbar.twig' %}
+<head>
+    <title>Episode Details</title>
+    <style>
+        body {
+            background-image: url('https://images4.alphacoders.com/133/1335396.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .container {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .episode-info {
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 30%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin: 20px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .episode-info h2 {
+            color: #333;
+        }
+
+        .characters-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .character-item {
+            box-sizing: border-box;
+            width: 18%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .character-item h3 {
+            color: #333;
+        }
+
+        .character-item img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>{{ episode.getName() }}</h1>
+</header>
+
+<div class="container">
+    <div class="episode-info">
+        <h2>Episode Information</h2>
+        <p>Episode: {{ episode.getEpisode() }}</p>
+        <p>Air Date: {{ episode.getAirDate()|date("Y-m-d") }}</p>
+        <p>Characters in this Episode</p>
+        <a href="/episodes">Back to Episode List</a>
+    </div>
+
+    <div class="characters-container">
+        {% for character in episode.getCharacters().getCharacters() %}
+            <div class="character-item">
+                <h3>{{ character.getName() }}</h3>
+                <p>Species: {{ character.getSpecies() }}</p>
+                <p>Gender: {{ character.getGender() }}</p>
+                <p>Origin: {{ character.getOrigin() }}</p>
+                <img src="{{ character.getImage() }}" alt="{{ character.getName() }}">
+            </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
