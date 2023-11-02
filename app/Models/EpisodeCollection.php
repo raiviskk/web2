@@ -17,12 +17,15 @@ class EpisodeCollection
         return $this->episodes;
     }
 
-    public function findByEpisode(string $episodeNumber): int
+    public function searchFilter(string $search): int
     {
         foreach ($this->episodes as $episode) {
-            if ($episode->getEpisode() === $episodeNumber) {
+            if ($episode->getEpisode() === $search) {
                 return $episode->getId();
             }
+            if ($episode->getName() === $search) {
+                return $episode->getId();}
+
 
         }
         return 1;

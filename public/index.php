@@ -2,6 +2,7 @@
 
 use App\ApiFetcher;
 use App\Controllers\EpisodeController;
+use App\Controllers\SearchController;
 use App\Response;
 use GuzzleHttp\Client;
 use Twig\Environment;
@@ -15,7 +16,7 @@ $twig = new Environment($loader);
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/episodes', [EpisodeController::class, 'index']);
     $r->addRoute('GET', '/episode/{id:\d+}', [EpisodeController::class, 'show']);
-    $r->addRoute('GET', '/search', [EpisodeController::class, 'search']);
+    $r->addRoute('GET', '/search', [SearchController::class, 'index']);
 });
 
 // Fetch method and URI from somewhere

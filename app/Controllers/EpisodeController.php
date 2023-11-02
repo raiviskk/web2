@@ -32,18 +32,5 @@ class EpisodeController
         return new Response($template, $episode);
     }
 
-    public function search(): Response
-    {
-        $queryParameters = $_GET;
-        $id = (string)$queryParameters['episode'];
-        $data = $this->api->fetchEpisodesFromApi();
-        $episodeID = $data->findByEpisode($id);
-        $episode = $this->api->fetchEpisodebyID($episodeID);
-        $template = 'episodes/show';
-        $data = ['episode' => $episode];
-        return new Response($template, $data);
-
-    }
-
 }
 
