@@ -2,6 +2,7 @@
 
 use App\ApiFetcher;
 use App\Controllers\EpisodeController;
+use App\Controllers\PageController;
 use App\Controllers\SearchController;
 use App\Response;
 use GuzzleHttp\Client;
@@ -17,6 +18,7 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->addRoute('GET', '/episodes', [EpisodeController::class, 'index']);
     $r->addRoute('GET', '/episode/{id:\d+}', [EpisodeController::class, 'show']);
     $r->addRoute('GET', '/search', [SearchController::class, 'index']);
+    $r->addRoute('GET', '/', [PageController::class, 'index']);
 });
 
 // Fetch method and URI from somewhere
